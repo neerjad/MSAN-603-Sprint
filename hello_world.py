@@ -1,3 +1,1 @@
-from subprocess import call
-call('ls')
-call('python', 'hello_world.py')
+print('Hello World')
