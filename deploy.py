@@ -15,7 +15,7 @@ def deploy(key, server, prefix):
 
 	ssh.exec_command('sudo yum install git -y')
 	#ssh.exec_command("rm -rf MSAN-603-Sprint; rm -rf Output; mkdir ~/Output; git clone https://github.com/neerjad/MSAN-603-Sprint.git; echo '1 * * * * python /home/ec2-user/MSAN-603-Sprint/hello_world.py' >  ~/.crontab; crontab ~/.crontab")
-	ssh.exec_command('rm -rf MSAN-603-Sprint; rm -rf Output; mkdir ~/Output; git clone https://github.com/neerjad/MSAN-603-Sprint.git; crontab -l | echo "*/5 * * * * python /home/ec2-user/MSAN-603-Sprint/hello_world.py" | crontab -')
+	ssh.exec_command('rm -rf MSAN-603-Sprint; rm -rf Output; mkdir ~/Output; git clone https://github.com/neerjad/MSAN-603-Sprint.git; crontab -l | echo "*/5 * * * * python /home/ec2-user/MSAN-603-Sprint/json_parser.py" | crontab -')
 
 	print "Pull from Github successful"
 	time.sleep(10)
