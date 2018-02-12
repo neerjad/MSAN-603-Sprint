@@ -2,12 +2,12 @@ import json
 import sys
 import os
 
-# prefix = sys.argv[1]
-prefix = 'group'
+prefix = sys.argv[1]
+# prefix = 'group'
 import os
 
-# path = '/home/ec2-user/srv/runme/'
-path = '/Users/neerjadoshi/msan/BusinessStrategies/MSAN-603-Sprint/jsonfiles'
+path = '/home/ec2-user/srv/runme/'
+# path = '/Users/neerjadoshi/msan/BusinessStrategies/MSAN-603-Sprint/jsonfiles'
 name = []
 age = []
 output_file = str(prefix + '.txt')
@@ -29,8 +29,8 @@ for file in files:
             except:
                 continue
 
-for i in range(0, len(name)):
-    print str(name[i]) + '\t' + str(age[i])
+# for i in range(0, len(name)):
+#     print str(name[i]) + '\t' + str(age[i])
 with open(path +'/'+ output_file, 'w') as f:
     for i in range(len(name)):
         f.write(str(name[i]) + '\t' + str(age[i]) + '\n')
