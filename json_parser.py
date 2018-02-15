@@ -6,7 +6,7 @@ prefix = sys.argv[1]
 # prefix = 'group'
 import os
 
-path = '/home/ec2-user/srv/runme/'
+path = '/srv/runme/'
 # path = '/Users/neerjadoshi/msan/BusinessStrategies/MSAN-603-Sprint/jsonfiles'
 name = []
 age = []
