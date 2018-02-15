@@ -26,4 +26,4 @@ def deploy(key, server, prefix):
 	## EOF ##
 
 
-deploy('sprint.pem', 'ec2-54-186-173-133.us-west-2.compute.amazonaws.com', 'prefix')
+#deploy('/Users/ryan/config/aws/sprint.pem', 'ec2-54-186-173-133.us-west-2.compute.amazonaws.com', 'prefix')
