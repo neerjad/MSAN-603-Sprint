@@ -29,7 +29,7 @@ def json_example():
     zipcode = req_data['prop']['zipcode'] 
     dmid = req_data['prop']['DMID']
     print '''name: {} age: {} zipcode: {} DMID: {}'''.format(name, age, zipcode, dmid)
-    with open("Raw.txt", "wb") as f: f.write(str(req_data)) # write json to file 
+    with open("Raw.txt", "wb") as f: f.write(str(req_data).replace('\n','')) # write json to file 
     return 'Your JSON file has been uploaded'
 
 
