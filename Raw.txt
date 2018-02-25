@@ -1,1 +1,2 @@
-{u'age': 32, u'name': u'Nick', u'prop': {u'zipcode': 94607, u'DMID': 388167}}
+{u'age': 32, u'name': u'Nick', u'prop': {u'zipcode': 94607, u'DMID': 388167}}{u'age': 32, u'name': u'Nick', u'prop': {u'zipcode': 94607, u'DMID': 388167}}
+{u'age': 32, u'name': u'Tom', u'prop': {u'zipcode': 94607, u'DMID': 388167}}
