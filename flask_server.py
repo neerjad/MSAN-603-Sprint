@@ -4,7 +4,7 @@ from flask import render_template
 from jinja2 import Environment
 import json  
 import os 
-import sys 
+import sys  
 import logging
 from logging.handlers import TimedRotatingFileHandler
 
@@ -30,14 +30,10 @@ def json_from_file(filename):
                 continue
         return 
 
-
-# home route  
-@application.route('/')  
-def home_page():
-    return render_template('layout.html')
-
+    
+# home route   
        
-@application.route('/json-example', methods=['POST']) 
+@application.route('/', methods=['POST']) 
 def json_example():
     req_data = request.get_json() 
     with open("Raw.txt", "a+") as f: 

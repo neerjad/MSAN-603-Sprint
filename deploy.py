@@ -3,8 +3,6 @@
 import paramiko
 import time
 
-## Example Deploy Script
-## This file uses paramiko to login to a box. Note that this is a skeleton file and you will need to do a bunch to complete the assignment.
 def deploy(key, server, prefix):
 	print "Connecting to box"
 	ssh = paramiko.SSHClient()
@@ -17,6 +15,11 @@ def deploy(key, server, prefix):
 	ssh.exec_command('rm -rf MSAN-603-Sprint; git clone https://github.com/neerjad/MSAN-603-Sprint.git;')
 	comm = 'crontab -l | echo "*/5 * * * * python /home/ec2-user/MSAN-603-Sprint/json_parser.py {} "  | crontab -'.format(prefix)
 	ssh.exec_command(comm)
+
+  
+	print "Launching Flask Server"
+	ssh.exec_command('python $(pwd)/MSAN-603-Sprint/flask_server.py ' + prefix)
+
 
 	print "Pull from Github successful"
 	time.sleep(10)
