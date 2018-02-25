@@ -13,6 +13,9 @@ application = Flask(__name__)
 
 
 # check a file for valid json
+
+# TODO - make the below function work in the json_example() flask route
+ 
 name = []  
 age = []    
 
@@ -51,6 +54,7 @@ def json_example():
 if __name__ == '__main__':
     application.run(host = '0.0.0.0', port = 8080, debug = True)
 
+    # TODO: make this run on AWS properly with a testtest user 
     # adding what could be useful for running on AWS in comments  
  
     # prefix = sys.argv[1]
