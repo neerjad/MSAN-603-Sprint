@@ -4,15 +4,14 @@ from flask import render_template
 from jinja2 import Environment
 import json  
 import os 
+import sys 
+import logging
+from logging.handlers import TimedRotatingFileHandler
+
 
 application = Flask(__name__)
 
-# home route  
-@application.route('/')  
-def home_page():
-    return render_template('layout.html')
 
-  
 # check a file for valid json
 name = []  
 age = []    
@@ -31,6 +30,12 @@ def json_from_file(filename):
                 continue
         return 
 
+
+# home route  
+@application.route('/')  
+def home_page():
+    return render_template('layout.html')
+
        
 @application.route('/json-example', methods=['POST']) 
 def json_example():
@@ -46,7 +51,22 @@ def json_example():
     return 'Your JSON file has been uploaded'
       
  
-
+      
 if __name__ == '__main__':
     application.run(host = '0.0.0.0', port = 8080, debug = True)
 
+    # adding what could be useful for running on AWS in comments  
+ 
+    # prefix = sys.argv[1]
+    # home_path = "/srv/runme/" + prefix 
+    # raw_path = home_path + "/Raw.txt"
+    # proc_path = home_path + "/proc.txt"
+
+    # raw_logger = logging.getLogger("raw rotation")
+    # raw_logger.setLevel(logging.INFO)
+    # raw_logger.addHandler( TimedRotatingFileHandler( raw_path , when = 'm', interval = 2, backupCount = 5) )
+
+    # proc = logging.getLogger("proc rotation")
+    # proc.setLevel(logging.INFO)
+    # proc.addHandler( TimedRotatingFileHandler( proc_path , when = 'm', interval = 2, backupCount = 5) )
+        
