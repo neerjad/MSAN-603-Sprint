@@ -14,8 +14,8 @@ def home_page():
 
   
 # check a file for valid json
-name = []
-age = []  
+name = []  
+age = []    
 
 def json_from_file(filename):
     with open(filename, 'r') as f:
@@ -35,11 +35,11 @@ def json_from_file(filename):
 @application.route('/json-example', methods=['POST']) 
 def json_example():
     req_data = request.get_json() 
-    with open("Raw.txt", "a") as f: 
+    with open("Raw.txt", "a+") as f: 
         f.write(str(req_data).replace('\n','')+'\n') # append json to Raw.txt file 
     
     valid_json = json_from_file('Raw.txt') # append valid json to proc.txt file
-    with open('proc.txt', 'w') as f1:
+    with open('proc.txt', 'a+') as f1:
         for i in range(len(name)):
             f1.write(str(name[i]) + '\t' + str(age[i]) + '\n')
 
