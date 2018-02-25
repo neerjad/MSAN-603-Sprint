@@ -1,4 +1,4 @@
-Jamaican 4x100 Sprint Project
+##Jamaican 4x100 Sprint Project
 
 Team Members: Neerja Doshi, Jake Toffler, Ryan Campa, Kishan Panchal 
 
