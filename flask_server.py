@@ -35,7 +35,8 @@ application = Flask(__name__)
        
 @application.route('/', methods=['POST']) 
 def json_example():
-    req_data = request.get_json()   
+    #req_data = request.get_json()   
+    req_data = request.json
     with open("Raw.txt", "a+") as f: 
         f.write(str(req_data).replace('\n','')+'\n') # append json to Raw.txt file 
 
@@ -53,8 +54,8 @@ def json_example():
     # clean_json = json_cleaner(req_data.replace('\n',''))
     # proc_logger.info(clean_json)
         
-    try:    
-        data = json.loads(req_data)
+    try:     
+        data = req_data
         name = data['name']
         age = data['prop']['age']
         if age > 0 and type(age) == type(1): 
