@@ -32,25 +32,25 @@ proc_logger.addHandler( TimedRotatingFileHandler( proc_path , when = 'm', interv
 # check a file for valid json
  
 # home route   
-       
+        
 @application.route('/', methods=['POST', 'GET']) 
 def json_example():
     #req_data = request.get_json()   
     req_data = request.json
     # with open("Raw.txt", "a+") as f: 
     #     f.write(str(req_data).replace('\n','')+'\n') 
-    with open(raw_path, "a+") as f: 
-        f.info(str(req_data).replace('\n','')+'\n') # append json to Raw.txt file  
+    with open(raw_path, "a+"): 
+        raw_logger.info(str(req_data).replace('\n','')+'\n') # append json to Raw.txt file  
         
     try:     
         data = req_data
         name = data['name']
         age = data['prop']['age']
-        if age > 0 and type(age) == type(1): 
+        if age > 0 and type(age) == type(1):    
             # with open('proc.txt', 'a+') as f1:
             #     f1.write( name + "\t" + str(age) )   
-            with open(proc_path, 'a+') as f1:
-                f1.info( name + "\t" + str(age) )     
+            with open(proc_path, 'a+'):
+                proc_logger.info( name + "\t" + str(age) )     
     except ValueError as value_error:
         pass
     return 'Your JSON file has been uploaded'
