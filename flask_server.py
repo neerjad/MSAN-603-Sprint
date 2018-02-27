@@ -10,7 +10,7 @@ from logging.handlers import TimedRotatingFileHandler
 
 
 application = Flask(__name__)
-
+  
 
 # TODO: make this run on AWS properly with a testtest user 
 # adding what could be useful for running on AWS in comments  
@@ -30,48 +30,17 @@ application = Flask(__name__)
 
 
 # check a file for valid json
-
-# TODO - make the below function work in the json_example() flask route
- 
-name = []  
-age = []    
-
-def json_from_file(filename):
-    with open(filename, 'r') as f:
-        for line in f:
-            try:
-                data = json.loads(line)
-                if data.get('name') == None or data.get('name') == '':
-                    continue
-                if type(data['prop'].get('age')) == int and data['prop'].get('age') >= 0:
-                    name.append(data['name'])
-                    age.append(data['prop']['age'])
-            except:
-                continue
-        return   
-
-def json_cleaner(blob):
-    try:
-        data = json.loads(line)
-        if data.get('name') == None or data.get('name') == '':
-            pass
-        if type(data['prop'].get('age')) == int and data['prop'].get('age') >= 0:
-            return data['name'] + ': ' + str(data['prop']['age'])
-        return None
-    except Exception as malformed:
-        return None 
  
 # home route   
        
 @application.route('/', methods=['POST']) 
 def json_example():
-    req_data = request.get_json() 
+    req_data = request.get_json()   
     with open("Raw.txt", "a+") as f: 
         f.write(str(req_data).replace('\n','')+'\n') # append json to Raw.txt file 
 
     # add raw blob into raw_logger
     # raw_logger.info(req_data.replace('\n',''))
-    
     
     # valid_json = json_from_file('Raw.txt') # append valid json to proc.txt file
     # with open('proc.txt', 'a+') as f1:
@@ -88,10 +57,9 @@ def json_example():
         data = json.loads(req_data)
         name = data['name']
         age = data['prop']['age']
-        if age > 0: 
+        if age > 0 and type(age) == type(1): 
             with open('proc.txt', 'a+') as f1:
-                f1.write( name + "\t" + str(age) ) 
-
+                f1.write( name + "\t" + str(age) )    
     except ValueError as value_error:
         pass
     return 'Your JSON file has been uploaded'
