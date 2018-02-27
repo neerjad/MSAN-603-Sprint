@@ -33,7 +33,7 @@ proc_logger.addHandler( TimedRotatingFileHandler( proc_path , when = 'm', interv
  
 # home route   
        
-@application.route('/', methods=['POST']) 
+@application.route('/', methods=['POST', 'GET']) 
 def json_example():
     #req_data = request.get_json()   
     req_data = request.json
