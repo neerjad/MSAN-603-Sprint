@@ -52,7 +52,7 @@ def json_example():
         #type checking
         assert(type(age) == int)
         assert(age > 0)
-        assert(type(name) == str)
+        assert( (type(name) == str) | (type(name) == unicode))
    
         with open(proc_path, 'a+'):
             proc_logger.info( name + "\t" + str(age))
@@ -63,8 +63,8 @@ def json_example():
         return "Incorrect values!"
     except KeyError as key_error:
         return "Incorrect key:value pairs!"
-    else:
-        return "There was an error with your POST"
+    except:
+        return "There was an error with the POST!"
 
     return "Your JSON file has been uploaded"
    
