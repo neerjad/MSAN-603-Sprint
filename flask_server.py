@@ -47,12 +47,12 @@ def json_example():
         #extract name and age from data     
         data = req_data
         name = data["name"]
-        age = int(data["prop"]["age"])
+        age = data["prop"]["age"]
 
         #type checking
-        #assert(type(age) == int)
+        assert(type(age) == int)
         assert(age > 0)
-        assert(name == str)
+        assert(type(name) == str)
    
         with open(proc_path, 'a+'):
             proc_logger.info( name + "\t" + str(age))
