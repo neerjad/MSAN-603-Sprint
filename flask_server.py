@@ -50,14 +50,14 @@ def json_example():
         age = data["prop"]["age"]
 
         #type checking
-        assert(type(age) == int)
-        assert(age > 0)
+        assert(type(int(age)) == int)
+        assert(int(age) > 0)
         assert(type(name) == str)
    
         with open(proc_path, 'a+'):
             proc_logger.info( name + "\t" + str(age))
 
-    except AssertionError:
+    except AssertionError as assertion_error:
         return "Incorrect data types in JSON!"        
     except ValueError as value_error:
         return "Incorrect values!"
