@@ -6,10 +6,9 @@ import time
 def deploy(key, server, prefix):
 	print "Connecting to box"
 	ssh = paramiko.SSHClient()
-	#k = paramiko.RSAKey.from_private_key_file("/Users/neerjadoshi/msan/BusinessStrategies/MSAN-603-Sprint/sprint.pem")
 
 	ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
-	ssh.connect(server, username = 'ec2-user', key_filename = key )
+	ssh.connect(server, username = 'testtest', key_filename = key )
 
 	ssh.exec_command('sudo yum install git -y')
 	ssh.exec_command('rm -rf MSAN-603-Sprint; git clone https://github.com/neerjad/MSAN-603-Sprint.git;')
@@ -27,5 +26,4 @@ def deploy(key, server, prefix):
 	ssh.close()
 	## EOF ##
 
-
-deploy('/Users/ryan/config/aws/sprint.pem', 'ec2-54-202-16-162.us-west-2.compute.amazonaws.com', 'hi')
+#deploy('/Users/ryan/config/aws/sprint.pem', 'ec2-54-202-16-162.us-west-2.compute.amazonaws.com', 'hi')
