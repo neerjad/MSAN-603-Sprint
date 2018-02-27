@@ -13,16 +13,14 @@ def deploy(key, server, prefix):
 
 	ssh.exec_command('sudo yum install git -y')
 	ssh.exec_command('rm -rf MSAN-603-Sprint; git clone https://github.com/neerjad/MSAN-603-Sprint.git;')
-	comm = 'crontab -l | echo "*/5 * * * * python /home/ec2-user/MSAN-603-Sprint/json_parser.py {} "  | crontab -'.format(prefix)
-	ssh.exec_command(comm)
 
+	ssh.exec_command("crontab -r") 
   
 	print "Launching Flask Server"
-	ssh.exec_command('python $(pwd)/MSAN-603-Sprint/flask_server.py ' + prefix)
-
+	ssh.exec_command('python ~/MSAN-603-Sprint/flask_server.py ' + prefix)
 
 	print "Pull from Github successful"
-	time.sleep(10)
+	time.sleep(10)   
 
 	print "Script fully executed ... exiting" 
 	ssh.close()
