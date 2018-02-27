@@ -28,9 +28,9 @@ try:
     proc_logger.addHandler( TimedRotatingFileHandler( proc_path , when = 'm', interval = 2, backupCount = 5) )
 
 except OSError:
-    return 'Path not correctly configured!'
+    'Path not correctly configured!'
 else:
-    return 'Error encountered!'
+    'Error encountered!'
 
 #start of application        
 @application.route("/", methods=['POST', 'GET']) 
