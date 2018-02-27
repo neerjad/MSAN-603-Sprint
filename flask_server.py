@@ -52,8 +52,8 @@ def json_example():
 
     # clean_json = json_cleaner(req_data.replace('\n',''))
     # proc_logger.info(clean_json)
-    
-    try:  
+        
+    try:    
         data = json.loads(req_data)
         name = data['name']
         age = data['prop']['age']
