@@ -17,14 +17,15 @@ def deploy(key, server, prefix):
 	ssh.exec_command("crontab -r") 
   
 	print "Launching Flask Server"
-	ssh.exec_command('python ~/MSAN-603-Sprint/flask_server.py ' + prefix)
+	time.sleep(2)
+	ssh.exec_command('sudo python $(pwd)/MSAN-603-Sprint/flask_server.py ' + prefix)
 
 	print "Pull from Github successful"
-	time.sleep(10)   
+	time.sleep(2)   
 
 	print "Script fully executed ... exiting" 
 	ssh.close()
 	## EOF ##
 
 
-#deploy('/Users/ryan/config/aws/sprint.pem', 'ec2-54-186-173-133.us-west-2.compute.amazonaws.com', 'prefix')
+deploy('/Users/ryan/config/aws/sprint.pem', 'ec2-54-202-16-162.us-west-2.compute.amazonaws.com', 'hi')

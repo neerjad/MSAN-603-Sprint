@@ -29,35 +29,43 @@ proc_logger.setLevel(logging.INFO)
 proc_logger.addHandler( TimedRotatingFileHandler( proc_path , when = 'm', interval = 2, backupCount = 5) )
 
 
-# check a file for valid json
- 
-# home route   
-        
-@application.route('/', methods=['POST', 'GET']) 
+
+#start of application        
+@application.route("/", methods=['POST', 'GET']) 
 def json_example():
-    #req_data = request.get_json()   
+
     req_data = request.json
-    # with open("Raw.txt", "a+") as f: 
-    #     f.write(str(req_data).replace('\n','')+'\n') 
-    with open(raw_path, "a+"): 
-        raw_logger.info(str(req_data).replace('\n','')+'\n') # append json to Raw.txt file  
-        
+
+    try:
+        with open(raw_path, "a+"): 
+            raw_logger.info(str(req_data).replace('\n','')+'\n') # append json to Raw.txt file  
+    except:
+        return "Malformed JSON"
+
     try:     
         data = req_data
-        name = data['name']
-        age = data['prop']['age']
-        if age > 0 and type(age) == type(1):    
-            # with open('proc.txt', 'a+') as f1:
-            #     f1.write( name + "\t" + str(age) )   
-            with open(proc_path, 'a+'):
-                proc_logger.info( name + "\t" + str(age) )     
+        name = data["name"]
+        age = data["prop"]["age"]
+
+        assert(type(age) == int)
+        assert(age > 0)
+        assert(type(name) == str)
+   
+        with open(proc_path, 'a+'):
+            proc_logger.info( name + "\t" + str(age))
+
     except ValueError as value_error:
-        pass
-    return 'Your JSON file has been uploaded'
-      
- 
-      
-if __name__ == '__main__':
+        return "Incorrect values"
+    except LookupError as lookup_error:
+        return "LookUpError encountered"
+    except KeyError as key_error:
+        return "Your JSON blob does not have the correct key:value pairs"
+    else:
+        return "There was an error with your POST"
+
+    return "Your JSON file has been uploaded"
+   
+if __name__ == "__main__":
     application.run(host = '0.0.0.0', port = 8080, debug = True)
 
         
