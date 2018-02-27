@@ -54,6 +54,8 @@ def json_example():
         with open(proc_path, 'a+'):
             proc_logger.info( name + "\t" + str(age))
 
+    except AssertionError:
+        return "Your JSON blob did not have correct data types!"        
     except ValueError as value_error:
         return "Incorrect values"
     except LookupError as lookup_error:
